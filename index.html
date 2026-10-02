@@ -33,7 +33,15 @@ main{padding:22px 14px 80px}
 .section-title{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:12px 2px 18px}
 .section-title h2{font-family:Georgia,"Noto Serif TC",serif;font-size:30px;margin:0;color:var(--green)}
 .section-title small{color:var(--muted)}
+
+.day-tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px;margin-bottom:8px;scrollbar-width:none}
+.day-tabs::-webkit-scrollbar{display:none}
+.day-tab{border:1px solid var(--line);background:#fffaf2;color:var(--green);padding:9px 12px;border-radius:999px;white-space:nowrap;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.04)}
+.day-tab.active{background:var(--green);color:white;border-color:var(--green)}
+.day-panel{display:none}
+.day-panel.active{display:block}
 .daygrid{display:grid;grid-template-columns:1.3fr .8fr;gap:16px}
+
 @media(max-width:760px){.daygrid{grid-template-columns:1fr}}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
 .dayhead{display:flex;justify-content:space-between;gap:14px;align-items:start;margin-bottom:10px}
@@ -107,7 +115,7 @@ hr{border:0;border-top:1px solid var(--line);margin:18px 0}
 <section id="days" class="section active">
   <div class="section-title"><div><div class="smallcaps">Day by day</div><h2>每日行程</h2></div><small>走路超過 20 分鐘 → 優先評估 Uber</small></div>
   <div class="tip">🚕 Uber／計程車時間與費用皆為預算用粗估，實際以當下 App 報價與交通為準。2/8、2/9 適逢韓國春節連假附近，店家營業時間請出發前再確認。</div>
-  <div id="daysContainer"></div>
+  <div id="dayTabs" class="day-tabs"></div><div id="daysContainer"></div>
 </section>
 
 <section id="food" class="section">
@@ -118,7 +126,8 @@ hr{border:0;border-top:1px solid var(--line);margin:18px 0}
     <div class="card"><b>種子糖餅 씨앗호떡</b><div class="meta">BIFF 廣場必吃</div></div>
     <div class="card"><b>魚糕 어묵</b><div class="meta">海雲台市場／南浦</div></div>
     <div class="card"><b>密麵 밀면</b><div class="meta">釜山代表麵食</div></div>
-    <div class="card"><b>韓式炸雞</b><div class="meta">廣安里｜60계치킨</div></div>
+    <div class="card"><b>熟成道 숙성도</b><div class="meta">廣安里｜熟成豬肉烤肉，建議排 2/9 晚餐</div></div>
+    <div class="card"><b>韓式炸雞</b><div class="meta">廣安里｜60계치킨，可改外帶或備選</div></div>
     <div class="card"><b>釜飯</b><div class="meta">海雲台｜Solsot 후보</div></div>
     <div class="card"><b>海鮮／生魚片</b><div class="meta">南浦／札嘎其</div></div>
   </div>
@@ -172,7 +181,7 @@ hr{border:0;border-top:1px solid var(--line);margin:18px 0}
   </div>
 </section>
 
-<div class="footer">BUSAN 2027 · travel notebook · v1</div>
+<div class="footer">BUSAN 2027 · travel notebook · v3</div>
 </main>
 
 <script>
@@ -197,30 +206,52 @@ function naverUrl(q) {
 }
 
 function renderDays() {
+  const tabs = $("#dayTabs");
   const c = $("#daysContainer");
+
+  tabs.innerHTML = DAYS.map((d,idx)=>`
+    <button class="day-tab ${idx===0?"active":""}" data-day="${idx}">
+      Day ${idx+1}<br><span style="font-size:11px;font-weight:600;opacity:.8">${esc(d.date)}</span>
+    </button>
+  `).join("");
+
   c.innerHTML = DAYS.map((d,idx)=>`
-    <article class="card" style="margin-bottom:16px">
-      <div class="dayhead">
-        <div><div class="date">DAY ${idx+1} · ${d.date}</div><h3>${esc(d.title)}</h3></div>
-        <span class="tag">${esc(d.theme)}</span>
-      </div>
-      <div class="daygrid">
-        <div class="timeline">
-          ${d.items.map(i=>`<div class="trow"><div class="time">${esc(i[0])}</div><div class="plan"><b>${esc(i[1])}</b><div class="note">${esc(i[2])}</div></div></div>`).join("")}
+    <article class="day-panel ${idx===0?"active":""}" data-day-panel="${idx}">
+      <div class="card">
+        <div class="dayhead">
+          <div><div class="date">DAY ${idx+1} · ${d.date}</div><h3>${esc(d.title)}</h3></div>
+          <span class="tag">${esc(d.theme)}</span>
         </div>
-        <div>
-          <div class="smallcaps" style="margin-bottom:6px">NAVER MAP</div>
-          ${d.places.length ? d.places.map(p=>`
-            <div class="place">
-              <strong>${esc(p[0])}</strong>
-              <div class="kr">${esc(p[1])}</div>
-              <div class="addr">${esc(p[2])}</div>
-              <a class="mapbtn" href="${naverUrl(p[1])}" target="_blank" rel="noopener">NAVER 搜尋 ↗</a>
-            </div>`).join("") : `<div class="note">今天沒有特別需要查的景點地址。</div>`}
+        <div class="daygrid">
+          <div class="timeline">
+            ${d.items.map(i=>`<div class="trow"><div class="time">${esc(i[0])}</div><div class="plan"><b>${esc(i[1])}</b><div class="note">${esc(i[2])}</div></div></div>`).join("")}
+          </div>
+          <div>
+            <div class="smallcaps" style="margin-bottom:6px">NAVER MAP</div>
+            ${d.places.length ? d.places.map(p=>`
+              <div class="place">
+                <strong>${esc(p[0])}</strong>
+                <div class="kr">${esc(p[1])}</div>
+                <div class="addr">${esc(p[2])}</div>
+                <a class="mapbtn" href="${naverUrl(p[1])}" target="_blank" rel="noopener">NAVER 搜尋 ↗</a>
+              </div>`).join("") : `<div class="note">今天沒有特別需要查的景點地址。</div>`}
+          </div>
         </div>
       </div>
     </article>
   `).join("");
+
+  tabs.querySelectorAll(".day-tab").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      tabs.querySelectorAll(".day-tab").forEach(b=>b.classList.remove("active"));
+      c.querySelectorAll(".day-panel").forEach(p=>p.classList.remove("active"));
+      btn.classList.add("active");
+      c.querySelector(`[data-day-panel="${btn.dataset.day}"]`).classList.add("active");
+      const stickyH = document.querySelector(".sticky")?.offsetHeight || 0;
+      const top = document.getElementById("days").getBoundingClientRect().top + window.scrollY - stickyH - 8;
+      window.scrollTo({top, behavior:"smooth"});
+    });
+  });
 }
 
 function renderShopping() {
