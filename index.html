@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BUSAN 2027｜2/8–2/16 釜山旅行手冊</title>
+<meta name="theme-color" content="#18352f">
+<style>
+:root {
+  --bg:#f6f1e8; --paper:#fffdf8; --ink:#26312e; --muted:#6e7672;
+  --green:#0f2742; --green2:#244c73; --sand:#d9b889; --line:#e7ddcf;
+  --rose:#c97878; --blue:#456b8d; --shadow:0 14px 35px rgba(39,48,44,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(#f5efe5,#f8f5ef);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif}
+a{color:inherit}
+.hero{background:radial-gradient(circle at 15% 0%,rgba(255,255,255,.15),transparent 28%),linear-gradient(135deg,#0b1f35,#163a5f);color:white;padding:54px 20px 34px;position:relative;overflow:hidden}
+.hero:after{content:"BUSAN";position:absolute;right:-14px;bottom:-31px;font-size:100px;font-weight:900;letter-spacing:6px;color:rgba(255,255,255,.04)}
+.wrap{max-width:980px;margin:auto}
+.kicker{font-size:12px;letter-spacing:.24em;opacity:.72;text-transform:uppercase}
+h1{font-family:Georgia,"Noto Serif TC",serif;font-size:clamp(38px,8vw,68px);margin:8px 0 6px;line-height:1}
+.subtitle{opacity:.86;font-size:16px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:8px 12px;border-radius:999px;font-size:13px}
+.sticky{position:sticky;top:0;z-index:50;background:rgba(246,241,232,.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06)}
+.nav{display:flex;gap:8px;overflow:auto;padding:10px 14px;max-width:980px;margin:auto;scrollbar-width:none}
+.nav button{border:0;background:#fffaf2;padding:9px 12px;border-radius:999px;white-space:nowrap;color:var(--green);font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+.nav button.active{background:var(--green);color:#fff}
+main{padding:22px 14px 80px}
+.section{display:none}
+.section.active{display:block}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:12px 2px 18px}
+.section-title h2{font-family:Georgia,"Noto Serif TC",serif;font-size:30px;margin:0;color:var(--green)}
+.section-title small{color:var(--muted)}
+.daygrid{display:grid;grid-template-columns:1.3fr .8fr;gap:16px}
+@media(max-width:760px){.daygrid{grid-template-columns:1fr}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
+.dayhead{display:flex;justify-content:space-between;gap:14px;align-items:start;margin-bottom:10px}
+.dayhead .date{font-weight:900;color:var(--green);font-size:14px}
+.dayhead h3{font-size:24px;margin:5px 0 0;font-family:Georgia,"Noto Serif TC",serif}
+.tag{font-size:12px;background:#eaf0f6;color:var(--green2);padding:7px 9px;border-radius:999px;white-space:nowrap}
+.timeline{display:grid;gap:0}
+.trow{display:grid;grid-template-columns:88px 1fr;gap:14px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.trow:last-child{border-bottom:0}
+.time{font-weight:900;color:var(--green)}
+.plan b{display:block;margin-bottom:4px}
+.note{font-size:13px;color:var(--muted);line-height:1.5}
+.place{padding:12px 0;border-bottom:1px solid var(--line)}
+.place:last-child{border-bottom:0}
+.place strong{display:block}
+.kr{font-size:13px;color:var(--green2);margin:2px 0 6px}
+.addr{font-size:12px;color:var(--muted);line-height:1.45}
+.mapbtn{display:inline-flex;margin-top:8px;text-decoration:none;background:#edf3f8;color:var(--green);padding:8px 10px;border-radius:12px;font-size:12px;font-weight:800}
+.tip{background:#fff8ea;border:1px solid #efd7ac;border-radius:16px;padding:13px 14px;color:#6a5129;font-size:13px;line-height:1.55;margin-bottom:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+.shopitem,.optitem{display:flex;gap:12px;align-items:flex-start}
+.shopitem input{margin-top:5px;transform:scale(1.2)}
+.shopitem label strong{display:block}
+.meta{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5}
+.expense-card{display:grid;gap:10px}
+.expense-form{display:grid;grid-template-columns:1.2fr .8fr .8fr .6fr auto;gap:8px}
+@media(max-width:760px){.expense-form{grid-template-columns:1fr 1fr} .expense-form button{grid-column:1/-1}}
+input,select,button,textarea{font:inherit}
+.field{width:100%;border:1px solid var(--line);background:#fff;padding:11px 12px;border-radius:12px;color:var(--ink)}
+.primary{border:0;background:var(--green);color:white;border-radius:12px;padding:11px 14px;font-weight:800}
+.secondary{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 11px;font-weight:700}
+.expense-list{display:grid;gap:8px;margin-top:4px}
+.expense-row{display:grid;grid-template-columns:1.2fr .8fr .8fr .7fr auto;gap:8px;align-items:center;background:#fffaf2;border:1px solid var(--line);border-radius:14px;padding:10px}
+@media(max-width:700px){.expense-row{grid-template-columns:1fr 1fr}}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+@media(max-width:650px){.summary{grid-template-columns:1fr 1fr}}
+.sum{background:#edf3f8;border-radius:14px;padding:12px}
+.sum b{display:block;font-size:18px;color:var(--green)}
+.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+.smallcaps{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Travel notebook</div>
+    <h1>BUSAN 2027</h1>
+    <div class="subtitle">2/8（一）— 2/16（二）｜9天8夜・海雲台住宿（待確認）</div>
+    <div class="pills">
+      <span class="pill">小羊</span><span class="pill">我</span><span class="pill">爸爸</span><span class="pill">媽媽</span>
+      <span class="pill">JX900 08:25 → 11:30</span><span class="pill">JX901 12:30 → 14:15</span>
+    </div>
+  </div>
+</header>
+
+<div class="sticky">
+  <div class="nav">
+    <button class="active" data-target="days">每日行程</button>
+    <button data-target="food">美食</button>
+    <button data-target="shopping">採買</button>
+    <button data-target="expenses">記帳</button>
+    <button data-target="optional">加碼</button>
+    <button data-target="backup">備份</button>
+  </div>
+</div>
+
+<main class="wrap">
+<section id="days" class="section active">
+  <div class="section-title"><div><div class="smallcaps">Day by day</div><h2>每日行程</h2></div><small>走路超過 20 分鐘 → 優先評估 Uber</small></div>
+  <div class="tip">🚕 Uber／計程車時間與費用皆為預算用粗估，實際以當下 App 報價與交通為準。2/8、2/9 適逢韓國春節連假附近，店家營業時間請出發前再確認。</div>
+  <div id="daysContainer"></div>
+</section>
+
+<section id="food" class="section">
+  <div class="section-title"><div><div class="smallcaps">Must eat</div><h2>一定要吃</h2></div></div>
+  <div class="grid2">
+    <div class="card"><b>豬肉湯飯 돼지국밥</b><div class="meta">海雲台｜早餐、宵夜都適合</div></div>
+    <div class="card"><b>낙곱새</b><div class="meta">海雲台｜螞蟻家 개미집</div></div>
+    <div class="card"><b>種子糖餅 씨앗호떡</b><div class="meta">BIFF 廣場必吃</div></div>
+    <div class="card"><b>魚糕 어묵</b><div class="meta">海雲台市場／南浦</div></div>
+    <div class="card"><b>密麵 밀면</b><div class="meta">釜山代表麵食</div></div>
+    <div class="card"><b>韓式炸雞</b><div class="meta">廣安里｜60계치킨</div></div>
+    <div class="card"><b>釜飯</b><div class="meta">海雲台｜Solsot 후보</div></div>
+    <div class="card"><b>海鮮／生魚片</b><div class="meta">南浦／札嘎其</div></div>
+  </div>
+</section>
+
+<section id="shopping" class="section">
+  <div class="section-title"><div><div class="smallcaps">Shopping list</div><h2>採買清單</h2></div><small>勾選會自動存在這台手機</small></div>
+  <div id="shopContainer" class="grid2"></div>
+</section>
+
+<section id="expenses" class="section">
+  <div class="section-title"><div><div class="smallcaps">Split the bill</div><h2>四人記帳</h2></div><small>小羊・我・爸爸・媽媽</small></div>
+  <div class="card expense-card">
+    <div class="expense-form">
+      <input id="expName" class="field" placeholder="項目，例如 Uber">
+      <input id="expAmount" class="field" type="number" placeholder="金額 ₩">
+      <select id="expPayer" class="field"><option>小羊</option><option>我</option><option>爸爸</option><option>媽媽</option></select>
+      <select id="expSplit" class="field"><option value="4">除4</option><option value="3">除3</option><option value="2">除2</option><option value="1">除1</option></select>
+      <button class="primary" onclick="addExpense()">＋新增</button>
+    </div>
+    <div id="expenseList" class="expense-list"></div>
+    <div class="summary" id="summary"></div>
+  </div>
+</section>
+
+<section id="optional" class="section">
+  <div class="section-title"><div><div class="smallcaps">Optional day trip</div><h2>最後加碼</h2></div><small>可直接替換 Day 8</small></div>
+  <div id="optionalContainer" class="grid2"></div>
+</section>
+
+<section id="backup" class="section">
+  <div class="section-title"><div><div class="smallcaps">Backup & print</div><h2>備份與列印</h2></div></div>
+  <div class="card">
+    <p>你的勾選與記帳資料預設只存在目前瀏覽器的 localStorage，不會自動上傳到 GitHub。</p>
+    <div class="toolbar">
+      <button class="primary" onclick="exportData()">匯出備份 JSON</button>
+      <label class="secondary" style="cursor:pointer">匯入備份 JSON<input id="importFile" type="file" accept=".json" hidden onchange="importData(event)"></label>
+      <button class="secondary" onclick="window.print()">列印／存 PDF</button>
+      <button class="secondary" onclick="resetAll()">清除本機資料</button>
+    </div>
+    <hr>
+    <b>放到 GitHub Pages</b>
+    <ol class="meta" style="font-size:14px;line-height:1.8">
+      <li>建立 GitHub Repository，例如 <b>busan-2027</b>，設為 Public。</li>
+      <li>把這個 <b>index.html</b> 上傳到 Repository 根目錄。</li>
+      <li>Settings → Pages → Source 選 <b>Deploy from a branch</b>。</li>
+      <li>Branch 選 <b>main</b>、資料夾選 <b>/(root)</b> → Save。</li>
+      <li>完成後網址通常會是 <b>https://你的帳號.github.io/busan-2027/</b>。</li>
+    </ol>
+    <div class="tip">公開 GitHub Pages 只會公開這個「空白記帳版網站」。你在手機上輸入的實際花費留在瀏覽器，不會因為網站在 GitHub 就自動公開。</div>
+  </div>
+</section>
+
+<div class="footer">BUSAN 2027 · travel notebook · v1</div>
+</main>
+
+<script>
+const DAYS = [{"date": "2/8（一）", "title": "抵達釜山・海雲台暖身日", "theme": "海雲台", "items": [["08:25", "台北出發｜JX900", "TPE → PUS"], ["11:30", "抵達金海機場", "入境＋領行李抓 60–90 分"], ["13:00–14:15", "前往海雲台飯店（待確認）", "🚕 Uber 約 45–70 分｜₩30,000–45,000"], ["15:00", "海雲台海灘＋Gunam-ro 步行街", "海雲台核心區以步行為主"], ["16:30", "海雲台傳統市場", "魚糕、辣炒年糕、煎餅；找老奶奶煎餅"], ["18:30", "晚餐：豬肉湯飯 or 螞蟻家 낙곱새", "兩家都在 Gunam-ro 周邊"], ["20:00", "海邊散步／便利商店補給", "第一天不排太硬"]], "places": [["海雲台傳統市場", "해운대전통시장", "부산 해운대구 구남로41번길 22-1"], ["螞蟻家 海雲台店", "개미집 해운대점", "부산 해운대구 구남로 34"], ["密陽血腸豬肉湯飯 海雲台店", "밀양순대돼지국밥 해운대점", "부산 해운대구 구남로 28"], ["BUSAN BADA SAND", "부산바다샌드", "부산 해운대구 우동1로38번가길 11"]]}, {"date": "2/9（二）", "title": "廣安里・海景甜點・炸雞", "theme": "廣安里", "items": [["10:30", "飯店慢慢出發", "春節補休日，留彈性"], ["11:00–12:00", "海雲台早午餐／Solsot 釜飯（若營業）", "先確認當日營業"], ["13:00", "前往廣安里", "🚕 Uber 約 20–30 分｜₩12,000–18,000"], ["14:00", "E&D Studio 水果毛巾捲／蛋糕", "甜點休息"], ["15:30", "SCENTICA 廣安店", "買釜山限定香水"], ["16:00–18:00", "廣安里海灘散步＋看廣安大橋", "區內步行"], ["18:30", "60 Chicken Busan Gwangan", "韓式炸雞晚餐"], ["20:00", "廣安里夜景 → 回海雲台", "🚕 Uber 約 20–30 分｜₩12,000–18,000"]], "places": [["E&D Studio", "이앤디스튜디오", "부산 수영구 수영로540번길 26"], ["SCENTICA 廣安店", "센티카 광안", "부산 수영구 광안로 25"], ["60 Chicken 廣安店", "60계치킨 부산광안점", "부산 수영구 남천바다로21번길 6"]]}, {"date": "2/10（三）", "title": "西面・樂天免稅・田浦咖啡街", "theme": "西面／田浦", "items": [["09:30", "海雲台出發", "🚕 Uber 約 30–45 分｜₩20,000–28,000"], ["10:30–13:00", "樂天百貨釜山本店＋樂天免稅", "先買免稅、精品／美妝"], ["13:00", "西面午餐", "現場挑排隊不誇張的店"], ["14:00–17:30", "田浦咖啡街＋小店＋服飾", "西面→田浦多數 10–20 分步行"], ["16:00", "녹아들다 녹카페｜芒果冰／抹茶冰", "下午茶"], ["18:00–20:00", "西面地下街／Olive Young", "購物集中日"], ["20:30", "回海雲台", "🚕 Uber 約 30–45 分｜₩20,000–28,000"]], "places": [["樂天百貨 釜山本店", "롯데백화점 부산본점", "부산 부산진구 가야대로 772"], ["田浦咖啡街", "전포카페거리", "부산 부산진구 동천로 92 일대"], ["녹아들다 녹카페", "녹아들다 녹카페", "부산 부산진구 서전로37번길 18"]]}, {"date": "2/11（四）", "title": "Sky Capsule・青沙浦・DIART・BRONI", "theme": "青沙浦", "items": [["09:30", "飯店 → 尾浦站", "步行 >20 分就搭 Uber｜約 ₩5,000–7,000"], ["10:30", "海雲台藍線公園 尾浦站", "預留取票／排隊"], ["11:00–11:30", "Sky Capsule 尾浦 → 青沙浦", "建議提前預約"], ["11:30–13:00", "青沙浦散步＋紅白燈塔＋鐵道景", "區內步行"], ["13:00", "DIART coffee｜奶油蜂蜜法棍", "先吃再去下一家"], ["15:00", "BRONI 海景咖啡", "慢慢坐、拍照"], ["17:30", "回海雲台", "🚕 Uber 約 10–15 分｜₩7,000–11,000"], ["19:00", "海雲台晚餐／市場補吃", "自由"]], "places": [["藍線公園 尾浦站", "해운대블루라인파크 미포정거장", "부산 해운대구 달맞이길62번길 13"], ["藍線公園 青沙浦站", "해운대블루라인파크 청사포정거장", "부산 해운대구 청사포로 116"], ["DIART coffee", "디아트커피", "부산 해운대구 청사포로128번길 12"], ["BRONI", "브로니 청사포", "부산 해운대구 중동 524-15"]]}, {"date": "2/12（五）", "title": "海東龍宮寺・Coralani 機張海景日", "theme": "機張", "items": [["09:30", "飯店 → 海東龍宮寺", "🚕 Uber 約 25–35 分｜₩16,000–22,000"], ["10:10–12:00", "海東龍宮寺", "海風大，注意保暖"], ["12:15", "午餐（機張一帶）", "海鮮／韓食"], ["13:30", "海東龍宮寺 → Coralani", "🚕 Uber 約 10–15 分｜₩7,000–10,000"], ["14:00–17:00", "Coralani 海景咖啡", "保留長時間海景位"], ["17:30", "Coralani → 海雲台", "🚕 Uber 約 25–35 分｜₩18,000–25,000"], ["19:00", "海雲台晚餐", "可補豬肉湯飯／烤肉"]], "places": [["海東龍宮寺", "해동용궁사", "부산 기장군 용궁길 86"], ["Coralani", "코랄라니", "부산 기장군 기장해안로 32"]]}, {"date": "2/13（六）", "title": "白淺灘・BIFF・光復路・南浦洞", "theme": "影島／南浦", "items": [["09:30", "海雲台 → 白淺灘文化村", "🚕 Uber 約 45–60 分｜₩30,000–40,000"], ["10:30–13:00", "白淺灘文化村", "海岸步道＋咖啡＋拍照"], ["11:30", "담아가다 伴手禮店", "文化村順路買小物"], ["13:10", "白淺灘 → BIFF 廣場", "🚕 Uber 約 15–20 分｜₩9,000–13,000"], ["13:30–15:00", "BIFF 廣場", "種子糖餅、魚糕、小吃"], ["15:00–18:00", "國際市場／罐頭市場／光復路步行街", "彼此步行可串"], ["18:00", "札嘎其／南浦晚餐", "海鮮或生魚片"], ["20:00", "南浦 → 海雲台", "🚕 Uber 約 45–60 分｜₩30,000–40,000"]], "places": [["白淺灘文化村", "흰여울문화마을", "부산 영도구 영선동4가 1043 일대"], ["담아가다", "담아가다", "부산 영도구 흰여울길 263"], ["BIFF 廣場", "BIFF광장", "부산 중구 구덕로 58-1"], ["光復路時尚街", "광복로패션거리", "부산 중구 남포동5가 2-6 일대"]]}, {"date": "2/14（日）", "title": "海雲台慢遊・冬柏島・The Bay 101", "theme": "海雲台", "items": [["10:00", "睡飽＋海雲台早午餐", "不趕"], ["11:30", "冬柏島散步", "從海雲台西側慢慢走"], ["13:30", "The Bay 101", "咖啡／景觀休息"], ["15:00", "海雲台自由購物／市場再訪", "補買美妝與伴手禮"], ["16:00", "Bada Sand 補買", "第一天沒買到就排今天"], ["17:30", "夕陽＋海灘", "情人節餐廳可能較多人"], ["19:00", "烤肉／海鮮餐", "建議事先訂位"]], "places": [["The Bay 101", "더베이101", "부산 해운대구 동백로 52"], ["冬柏島", "동백섬", "부산 해운대구 우동 동백섬 일대"], ["BUSAN BADA SAND", "부산바다샌드", "부산 해운대구 우동1로38번가길 11"]]}, {"date": "2/15（一）", "title": "最後採買・自由補課日", "theme": "自由日", "items": [["10:00", "睡飽出門", "最後完整一天"], ["11:00–15:00", "二選一：西面補買／田浦再逛", "🚕 單程約 ₩20,000–28,000"], ["15:00–17:00", "回海雲台整理戰利品", "避免最後一晚太累"], ["17:30", "最後一餐：最想再吃的一家", "螞蟻家／豬肉湯飯／烤肉／海鮮"], ["20:00", "回飯店打包", "免稅品、液體、護照確認"]], "places": []}, {"date": "2/16（二）", "title": "回台灣", "theme": "回程", "items": [["07:30", "起床／早餐", "簡單吃"], ["08:30", "飯店退房", "住宿若較遠再提早"], ["08:45–09:00", "海雲台 → 金海機場", "🚕 Uber 約 45–70 分｜₩30,000–45,000"], ["10:00", "抵達機場、辦理報到", "國際線保留充裕時間"], ["12:30", "JX901 釜山 → 台北", "14:15 抵達"]], "places": []}];
+const SHOPPING = [{"name": "SCENTICA 釜山限定香水 AVENQUA 25", "where": "2/9 廣安里", "naver": "센티카 광안", "budget": "現場價", "note": "廣安店限定香氣"}, {"name": "I'MINT 咖啡糖 Espresso／Americano", "where": "看到 CU 就找", "naver": "CU 편의점", "budget": "約 ₩3,800／盒", "note": "景點區若太貴先不要買"}, {"name": "BUSAN BADA SAND 奶油餅乾", "where": "2/8 或 2/14 海雲台", "naver": "부산바다샌드", "budget": "約 ₩18,500／9入", "note": "海雲台順路"}, {"name": "담아가다 釜山特色伴手禮", "where": "2/13 白淺灘", "naver": "담아가다", "budget": "依品項", "note": "磁鐵、明信片、小物"}];
+const OPTIONAL = [{"name": "慶州一日遊", "route": "皇理團路 → 大陵苑 → 瞻星台 → 東宮與月池", "note": "韓屋、古蹟、咖啡"}, {"name": "大邱一日遊", "route": "西門市場 → 近代文化巷弄 → 東城路 → 安吉郎烤腸街", "note": "市場、逛街、美食"}, {"name": "巨濟島一日遊", "route": "海景＋自然景點", "note": "較遠，適合包車／一日團"}, {"name": "釜山市區替代案", "route": "松島海上纜車 → 甘川文化村 → 影島咖啡", "note": "不想跑外地時最實用"}];
+const PEOPLE = ["小羊","我","爸爸","媽媽"];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
+
+document.querySelectorAll(".nav button").forEach(btn=>btn.addEventListener("click",()=>{
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  btn.classList.add("active");
+  document.getElementById(btn.dataset.target).classList.add("active");
+  window.scrollTo({top:document.querySelector(".sticky").offsetTop,behavior:"smooth"});
+}));
+
+function naverUrl(q) {
+  return "https://map.naver.com/p/search/" + encodeURIComponent(q);
+}
+
+function renderDays() {
+  const c = $("#daysContainer");
+  c.innerHTML = DAYS.map((d,idx)=>`
+    <article class="card" style="margin-bottom:16px">
+      <div class="dayhead">
+        <div><div class="date">DAY ${idx+1} · ${d.date}</div><h3>${esc(d.title)}</h3></div>
+        <span class="tag">${esc(d.theme)}</span>
+      </div>
+      <div class="daygrid">
+        <div class="timeline">
+          ${d.items.map(i=>`<div class="trow"><div class="time">${esc(i[0])}</div><div class="plan"><b>${esc(i[1])}</b><div class="note">${esc(i[2])}</div></div></div>`).join("")}
+        </div>
+        <div>
+          <div class="smallcaps" style="margin-bottom:6px">NAVER MAP</div>
+          ${d.places.length ? d.places.map(p=>`
+            <div class="place">
+              <strong>${esc(p[0])}</strong>
+              <div class="kr">${esc(p[1])}</div>
+              <div class="addr">${esc(p[2])}</div>
+              <a class="mapbtn" href="${naverUrl(p[1])}" target="_blank" rel="noopener">NAVER 搜尋 ↗</a>
+            </div>`).join("") : `<div class="note">今天沒有特別需要查的景點地址。</div>`}
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+function renderShopping() {
+  const saved = JSON.parse(localStorage.getItem("busanShopping")||"{}");
+  $("#shopContainer").innerHTML = SHOPPING.map((s,i)=>`
+    <div class="card shopitem">
+      <input type="checkbox" id="shop${i}" ${saved[i]?"checked":""} onchange="toggleShop(${i},this.checked)">
+      <label for="shop${i}">
+        <strong>${esc(s.name)}</strong>
+        <div class="meta">📍 ${esc(s.where)}<br>🗺 NAVER：${esc(s.naver)}<br>💰 ${esc(s.budget)}<br>${esc(s.note)}</div>
+        <a class="mapbtn" href="${naverUrl(s.naver)}" target="_blank" rel="noopener">NAVER 搜尋 ↗</a>
+      </label>
+    </div>
+  `).join("");
+}
+function toggleShop(i,v) {
+  const saved = JSON.parse(localStorage.getItem("busanShopping")||"{}");
+  saved[i]=v; localStorage.setItem("busanShopping",JSON.stringify(saved));
+}
+
+function renderOptional(){
+  $("#optionalContainer").innerHTML = OPTIONAL.map(o=>`
+    <div class="card optitem">
+      <div>
+        <strong>${esc(o.name)}</strong>
+        <div class="meta">${esc(o.route)}<br>${esc(o.note)}</div>
+      </div>
+    </div>`).join("");
+}
+
+function getExpenses(){ return JSON.parse(localStorage.getItem("busanExpenses")||"[]"); }
+function saveExpenses(x){ localStorage.setItem("busanExpenses",JSON.stringify(x)); renderExpenses(); }
+function addExpense(){
+  const name=$("#expName").value.trim(), amount=Number($("#expAmount").value), payer=$("#expPayer").value, split=Number($("#expSplit").value);
+  if(!name || !amount) return alert("請先填項目和金額");
+  const x=getExpenses(); x.push({id:Date.now(),name,amount,payer,split}); saveExpenses(x);
+  $("#expName").value=""; $("#expAmount").value="";
+}
+function delExpense(id){ saveExpenses(getExpenses().filter(x=>x.id!==id)); }
+function renderExpenses(){
+  const x=getExpenses();
+  $("#expenseList").innerHTML = x.length ? x.map(e=>`
+    <div class="expense-row">
+      <div><b>${esc(e.name)}</b><div class="meta">每人約 ₩${Math.round(e.amount/e.split).toLocaleString()}</div></div>
+      <div>₩${Number(e.amount).toLocaleString()}</div>
+      <div>${esc(e.payer)}付</div>
+      <div>除${e.split}</div>
+      <button class="secondary" onclick="delExpense(${e.id})">刪除</button>
+    </div>`).join("") : `<div class="note">還沒有記帳資料。</div>`;
+  const paid=Object.fromEntries(PEOPLE.map(p=>[p,0]));
+  x.forEach(e=>paid[e.payer]+=Number(e.amount));
+  const total=x.reduce((a,b)=>a+Number(b.amount),0);
+  $("#summary").innerHTML = PEOPLE.map(p=>`<div class="sum"><span>${p}先付</span><b>₩${Math.round(paid[p]).toLocaleString()}</b></div>`).join("") +
+    `<div class="sum" style="grid-column:1/-1"><span>目前總支出</span><b>₩${Math.round(total).toLocaleString()}</b></div>`;
+}
+
+function exportData(){
+  const data={shopping:JSON.parse(localStorage.getItem("busanShopping")||"{}"), expenses:getExpenses(), exportedAt:new Date().toISOString()};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="busan-2027-backup.json"; a.click(); URL.revokeObjectURL(a.href);
+}
+function importData(ev){
+  const f=ev.target.files[0]; if(!f) return;
+  const r=new FileReader(); r.onload=()=>{try{const d=JSON.parse(r.result); localStorage.setItem("busanShopping",JSON.stringify(d.shopping||{})); localStorage.setItem("busanExpenses",JSON.stringify(d.expenses||[])); renderShopping(); renderExpenses(); alert("已匯入");}catch(e){alert("備份檔格式不正確")}}; r.readAsText(f);
+}
+function resetAll(){
+  if(confirm("確定要清除這台裝置上的勾選與記帳嗎？")){localStorage.removeItem("busanShopping");localStorage.removeItem("busanExpenses");renderShopping();renderExpenses();}
+}
+
+renderDays(); renderShopping(); renderOptional(); renderExpenses();
+</script>
+</body>
+</html>
